@@ -11,6 +11,6 @@ app.use((req, res) => {
   res.status(404).json({ message: "Recurso solicitado no encontrado" });
 });
 
-app.listen(3000, function () {
+app.listen(3000, () => {
   console.log("servidor corriendoo!");
 });

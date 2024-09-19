@@ -3,7 +3,7 @@ import fs from "fs";
 
 const router = express.Router();
 
-router.get("/", function (req, res) {
+router.get("/", (req, res) => {
   fs.readFile("./data/cards.json", "utf-8", (err, data) => {
     if (err) {
       console.log(err);

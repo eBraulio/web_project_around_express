@@ -4,6 +4,7 @@
     "no-console": "off",
     "no-underscore-dangle": "off",
     "quotes": ["error", "double"],
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "consistent-return": "off"
   }
 }
