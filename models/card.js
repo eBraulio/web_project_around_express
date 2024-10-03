@@ -20,7 +20,7 @@ const cardSchema = new Schema(
         validator: function (v) {
           return urlRegex.test(v);
         },
-        message: (props) => `${props.value} ins not a valid URL!`,
+        message: (props) => `${props.value} El URL no es valido`,
       },
     },
     owner: {
@@ -33,14 +33,9 @@ const cardSchema = new Schema(
       ref: 'user',
       default: [],
     },
-    // createdAt: {
-    //   type: Date,
-    //   default: Date.now,
-    // },
   },
   { timestamps: true }
 );
 
 const Card = mongoose.model('card', cardSchema);
 export default Card;
-// module.exports = mongoose.model('card', cardSchema);

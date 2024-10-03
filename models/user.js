@@ -20,18 +20,16 @@ const userSchema = new Schema({
   avatar: {
     type: String,
     required: true,
-    default:
-      'https://practicum-content.s3.us-west-1.amazonaws.com/resources/moved_avatar_1604080799.jpg',
+    // default:
+    //   'https://practicum-content.s3.us-west-1.amazonaws.com/resources/moved_avatar_1604080799.jpg',
     validate: {
       validator: function (v) {
         return urlRegex.test(v);
       },
-      message: (props) => `${props.value} is not  a valid URL!`,
+      message: (props) => `${props.value} El URL no es valido`,
     },
   },
 });
-
-// module.exports = mongoose.model('user', userSchema);
 
 const User = mongoose.model('user', userSchema);
 export default User;

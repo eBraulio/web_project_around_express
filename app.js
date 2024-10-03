@@ -1,5 +1,4 @@
 import express from 'express';
-// const mongoose = require('mongoose');
 import userRoutes from './routes/users.js';
 import cardsRoutes from './routes/cards.js';
 import mongoose from 'mongoose';
@@ -17,10 +16,17 @@ mongoose
 app.use(express.json());
 app.use('/users', userRoutes);
 app.use('/cards', cardsRoutes);
-app.use((req, res) => {
+app.use((req, res, next) => {
   res.status(404).json({ message: 'Recurso solicitado no encontrado' });
 });
+app.use((req, res, next) => {
+  req.user = {
+    _id: '66fc3eb18baf7a8ae72d5a66', // pega el _id del usuario de prueba que creamos en el paso anterior
+  };
+  next();
+});
 
-app.listen(3000, () => {
-  console.log('servidor corriendoo!');
+const { PORT = 3000 } = process.env;
+app.listen(PORT, () => {
+  console.log(`servidor corriendoo en puerto ${PORT}`);
 });
