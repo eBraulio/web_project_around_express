@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   res.status(404).json({ message: 'Recurso solicitado no encontrado' });
 });
 app.use((req, res, next) => {
-  req.user = {
+  res.user = {
     _id: '66fc3eb18baf7a8ae72d5a66', // pega el _id del usuario de prueba que creamos en el paso anterior
   };
   next();
