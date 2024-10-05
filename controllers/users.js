@@ -41,11 +41,10 @@ export async function getUserById(req, res) {
 }
 
 export async function updateUser(req, res) {
-  console.log(req.params.userId);
   const { name, about } = req.body;
 
   User.findByIdAndUpdate(
-    req.params.userId,
+    req.user._id,
     { name, about },
     { new: true, runValidators: true }
   )
@@ -71,12 +70,10 @@ export async function updateUser(req, res) {
 }
 
 export async function updateUserAvatar(req, res) {
-  console.log(req.params.userId);
-
   const { avatar } = req.body;
 
   User.findByIdAndUpdate(
-    req.params.userId,
+    req.user._id,
     { avatar },
     { new: true, runValidators: true }
   )

@@ -1,18 +1,18 @@
-### Proyecto 13 "Introducción al back end: Node.js y Express.js"
+### Proyecto 14 "Conexión a bases de datos con REST API"
 
 ### Descripción
 
-\*Página desarrollada para el Sprint 13: "Introducción al back end: Node.js y Express.js", del curso de WEB Developer de TRIPLETEN. El proyecto se enfoca en la creación del servidor que se utilizará en la página de "Alrededor de los EE. UU.".
+\*Página desarrollada para el Sprint 14: "Conexión a bases de datos con REST API", del curso de WEB Developer de TRIPLETEN. El proyecto se enfoca crear una API RESTful para la página del proyecto "Alrededor de los EE. UU.", y la aplicación se conectará a una base de datos.
 
 \*La página tiene las siguientes funcionalidades:
 
-- Obtener un listado de usuarios y tarjetas desde rutas específicas.
-
-- Verificar si un usuario existe en el sistema y devolver su información o un error si no existe.
-
-- Manejo de errores 404 cuando los recursos solicitados no se encuentran disponibles.
-
-- Fetch a list of users and cards from specific routes.
+- Uso de MongoDB para la creación de una base de datos NoSQL.
+- Crear esquemas y modelos para Users y Cards.
+- Utilización de expresiones para validar los datos introducidos en los campos de URL.
+- Creación de controladores y rutas para usuarios y tarjetas.
+- La autorización se lleva a cabo a través de un campo fijo Owner (solución temporal).
+- Manejo de errores con códigos 400, 404, y 500.
+- Implementación de funciones y rutas para actualizar perfil, actualizar avatar, dar Like/Dislike a una tarjeta.
 
 ### Tecnologías:
 
@@ -22,3 +22,4 @@ La página web esta diseñada con las siguientes tecnologías:
 - Express.js
 - Middlewares
 - Eslit
+- Routes/rutas

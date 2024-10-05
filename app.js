@@ -7,7 +7,7 @@ const app = express();
 mongoose
   .connect('mongodb://localhost:27017/aroundb')
   .then(() => {
-    console.log('conectado a la base de datos');
+    console.log('Conectado a la base de datos en MongoDB');
   })
   .catch((err) => {
     console.log('algo debió de salir mal', err);
@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   req.user = {
-    _id: '66fc3eb18baf7a8ae72d5a66', // pega el _id del usuario de prueba que creamos en el paso anterior
+    _id: '66fc3eb18baf7a8ae72d5a66',
   };
   next();
 });
@@ -28,5 +28,5 @@ app.use((req, res, next) => {
 });
 const { PORT = 3000 } = process.env;
 app.listen(PORT, () => {
-  console.log(`servidor corriendoo en puerto ${PORT}`);
+  console.log(`Servidor corriendoo en puerto ${PORT}`);
 });
