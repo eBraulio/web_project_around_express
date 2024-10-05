@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 const { Schema } = mongoose;
 
 const urlRegex =
@@ -20,8 +21,6 @@ const userSchema = new Schema({
   avatar: {
     type: String,
     required: true,
-    // default:
-    //   'https://practicum-content.s3.us-west-1.amazonaws.com/resources/moved_avatar_1604080799.jpg',
     validate: {
       validator: function (v) {
         return urlRegex.test(v);

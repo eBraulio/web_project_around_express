@@ -4,7 +4,9 @@ export async function getUsers(req, res) {
   User.find({})
     .then((users) => res.status(200).json(users))
     .catch((err) =>
-      res.status(500).json({ message: 'Error retrieving users', error: err })
+      res
+        .status(500)
+        .json({ message: 'Error al obtener los Users', error: err })
     );
 }
 
@@ -13,7 +15,9 @@ export async function createUser(req, res) {
   User.create({ name, about, avatar })
     .then((user) => res.status(201).json(user))
     .catch((err) =>
-      res.status(500).json({ message: 'Error creating user', error: err })
+      res
+        .status(500)
+        .json({ message: 'Error al crear un User nuevo', error: err })
     );
 }
 
@@ -21,7 +25,7 @@ export async function getUserById(req, res) {
   console.log(req.params.userId);
   User.findById(req.params.userId)
     .orFail(() => {
-      const error = new Error('User not found');
+      const error = new Error('El Usuario no fue encontrado');
       error.statusCode = 404;
       throw error;
     })
@@ -30,19 +34,15 @@ export async function getUserById(req, res) {
       if ((err.statusCode = 404)) {
         return res.status(404).json({ message: err.message });
       }
-      res.status(500).json({ message: 'Error retrieving user', error: err });
+      res
+        .status(500)
+        .json({ message: 'Error al obtener el usuario', error: err });
     });
 }
 
 export async function updateUser(req, res) {
   console.log(req.params.userId);
-  // const { userId } = req.params;
   const { name, about } = req.body;
-
-  // validate if userId is a valid ObjectId
-  // if (!mongoose.Types.ObjectId.isValid(req.params.userId)) {
-  //   return res.status(400).json({ message: 'Invalid user ID' });
-  // }
 
   User.findByIdAndUpdate(
     req.params.userId,
@@ -50,31 +50,30 @@ export async function updateUser(req, res) {
     { new: true, runValidators: true }
   )
     .orFail(() => {
-      const error = new Error('User not found');
+      const error = new Error('El Usuario no fue encontrado');
       error.statusCode = 404;
       throw error;
     })
     .then((user) => res.status(200).json(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return res.status(400).json({ message: 'Invalid data', error: err });
+        return res
+          .status(400)
+          .json({ message: 'Datos no válidos', error: err });
       }
       if (err.statusCode === 404) {
         return res.status(404).json({ message: err.message });
       }
-      res.status(500).json({ message: 'Error updating user', error: err });
+      res
+        .status(500)
+        .json({ message: 'Error al actualizar el usuario', error: err });
     });
 }
 
 export async function updateUserAvatar(req, res) {
   console.log(req.params.userId);
-  // const { userId } = req.params;
-  const { avatar } = req.body;
 
-  // // validate if userId is a valid ObjectId
-  // if (!mongoose.Types.ObjectId.isValid(userId)) {
-  //   return res.status(400).json({ message: 'Invalid userID' });
-  // }
+  const { avatar } = req.body;
 
   User.findByIdAndUpdate(
     req.params.userId,
@@ -82,18 +81,22 @@ export async function updateUserAvatar(req, res) {
     { new: true, runValidators: true }
   )
     .orFail(() => {
-      const error = new Error('User not found');
+      const error = new Error('El usuario no fue encontrado');
       error.statusCode = 404;
       throw error;
     })
     .then((user) => res.status(200).json(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return res.status(400).json({ message: 'Invalid data', error: err });
+        return res
+          .status(400)
+          .json({ message: 'Datos no válidos', error: err });
       }
       if (err.statusCode === 404) {
         return res.status(404).json({ message: err.message });
       }
-      res.status(500).json({ message: 'Error updating avatar', error: err });
+      res
+        .status(500)
+        .json({ message: 'Error al actualizar el avatar', error: err });
     });
 }

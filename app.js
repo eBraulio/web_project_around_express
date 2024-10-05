@@ -14,18 +14,18 @@ mongoose
   });
 
 app.use(express.json());
+
+app.use((req, res, next) => {
+  req.user = {
+    _id: '66fc3eb18baf7a8ae72d5a66', // pega el _id del usuario de prueba que creamos en el paso anterior
+  };
+  next();
+});
 app.use('/users', userRoutes);
 app.use('/cards', cardsRoutes);
 app.use((req, res, next) => {
   res.status(404).json({ message: 'Recurso solicitado no encontrado' });
 });
-app.use((req, res, next) => {
-  res.user = {
-    _id: '66fc3eb18baf7a8ae72d5a66', // pega el _id del usuario de prueba que creamos en el paso anterior
-  };
-  next();
-});
-
 const { PORT = 3000 } = process.env;
 app.listen(PORT, () => {
   console.log(`servidor corriendoo en puerto ${PORT}`);
